@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script src="./assets/lib/jquery/jquery.js"></script>
+<script src="./assets/lib/bootstrap/js/bootstrap.js"></script>
+<script src="./assets/lib/knockout/knockout.js"></script>
+<script src="./assets/lib/sockjs/sockjs.js"></script>
+<script src="./assets/lib/stomp/lib/stomp.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/index.css" />
+
+</head>
+<body>
+
+	<div id="main" class="main" data-bind="foreach: rows()">
+		<div class="line" data-bind="foreach: cells()">
+			<div class="9_0"></div>
+		</div>
+	</div>
+
+	<script src="./js/AppModel.js"></script>
+	<script src="./js/Row.js"></script>
+	<script src="./js/Cell.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var appModel = new AppModel();
+			ko.applyBindings(appModel);
+		});
+	</script>
+
+</body>
+</html>
