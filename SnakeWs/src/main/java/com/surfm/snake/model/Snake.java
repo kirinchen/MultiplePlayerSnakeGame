@@ -7,13 +7,13 @@ import java.util.List;
 public class Snake {
 
 	private List<Cell> cells = new ArrayList<Cell>();
-	private Principal principal;
+	private String userName;
 	private Direction direction = Direction.LEFT;
 	
 
-	public Snake(Principal principal) {
+	public Snake(String userName) {
 		super();
-		this.principal = principal;
+		this.userName = userName;
 	}
 
 }
