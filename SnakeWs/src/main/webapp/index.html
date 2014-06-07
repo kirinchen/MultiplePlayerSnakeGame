@@ -14,7 +14,7 @@
 
 	<div id="main" class="main" data-bind="foreach: rows()">
 		<div class="line" data-bind="foreach: cells()">
-			<div class="9_0"></div>
+			<div  class="9_0"  ></div>
 		</div>
 	</div>
 
@@ -23,8 +23,13 @@
 	<script src="./js/Cell.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var appModel = new AppModel();
+
+			var socket = new SockJS('/snake/sankeWs');
+			var stompClient = Stomp.over(socket);
+
+			var appModel = new AppModel(stompClient);
 			ko.applyBindings(appModel);
+			appModel.connect();
 		});
 	</script>
 

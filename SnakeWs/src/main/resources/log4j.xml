@@ -10,7 +10,7 @@
 		</layout>
 	</appender>
 	
-	<logger name="com.surfm.testws">
+	<logger name="com.surfm.snake">
 		<level value="debug" />
 	</logger>
 

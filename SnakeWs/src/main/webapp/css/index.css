@@ -2,20 +2,25 @@
     clear: both;
 }
 .main .line div {
-    width: 20px;
-    height: 20px;
+    width: 7px;
+    height: 7px;
     float: left;
-    margin: 1px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
+    border-radius: 2px;
+    background-color: #eee;
     transition: background-color .5s;
 }
-.main .line div.s {
-    background-color: #bbb;
+
+.main .line div.rival {
+    background-color: red;
     transition: background-color .5s;
 }
-.main .line div.f {
+
+.main .line div.self {
+    background-color: blue;
+    transition: background-color .5s;
+}
+.main .line div.egg {
     background-color: green;
     transition: background-color 2s;
 }

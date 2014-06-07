@@ -1,12 +1,12 @@
-function Row(){
+function Row(_y){
 	var self = this;
 	self.cells = ko.observableArray();
-	initTest();
+	self.y = _y;
 	
-	function initTest(){
-		for(var i=0;i<10;i++){
-			self.cells.push(new Cell());
+	self.initWidth =function(width){
+		for(var i=0;i<width;i++){
+			self.cells.push(new Cell(i,self.y));
 		}
-	}
+	};
 	
 }

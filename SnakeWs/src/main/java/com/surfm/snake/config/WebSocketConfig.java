@@ -12,7 +12,7 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 @Configuration
 @EnableScheduling
-@ComponentScan("com.surfm.testws")
+@ComponentScan("com.surfm.snake")
 @EnableWebSocketMessageBroker
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
@@ -20,8 +20,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/portfolio").withSockJS();
-		registry.addEndpoint("/chatWs").withSockJS();
+		registry.addEndpoint("/sankeWs").withSockJS();
 	}
 
 	@Override
