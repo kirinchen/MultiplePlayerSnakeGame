@@ -36,13 +36,13 @@ function Cell(_x,_y){
 	}
 	
 	function updateSelfSnake(snake){
-		updateSnakes(snake,_SELF_CSS_CLASS);
+		updateSnakesByClass(snake,_SELF_CSS_CLASS);
 	}
 	
 	
-	function updateSnakes(snake,_cssClass){
+	function updateSnakesByClass(snake,_cssClass){
 		for(var key in snake.bodys){
-			body = snake[key];
+			body = snake.bodys[key];
 			if(body.x == self.x && body.y == self.y){
 				if(!self._isSetCssClass ){
 					self._isSetCssClass = true;

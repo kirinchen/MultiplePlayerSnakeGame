@@ -14,7 +14,7 @@
 
 	<div id="main" class="main" data-bind="foreach: rows()">
 		<div class="line" data-bind="foreach: cells()">
-			<div  class="9_0"  ></div>
+			<div   data-bind="attr: { class: cssClass }" ></div>
 		</div>
 	</div>
 
