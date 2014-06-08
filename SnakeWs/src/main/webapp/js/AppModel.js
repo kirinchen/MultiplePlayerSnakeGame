@@ -18,6 +18,22 @@ function AppModel(stompClient) {
 
 	};
 	
+	self.leftClick = function(){
+		sendDirection(_LEFT_KEY_CODE);
+	};
+	
+	self.rightClick = function(){
+		sendDirection(_RIGHT_KEY_CODE);
+	};
+	
+	self.upClick = function(){
+		sendDirection(_UP_KEY_CODE);
+	};
+	
+	self.downClick = function(){
+		sendDirection(_DOWN_KEY_CODE);
+	};
+	
 	self.keyDown = function(event){
 		sendDirection(event.keyCode);
 	};

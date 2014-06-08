@@ -1,5 +1,7 @@
 package com.surfm.snake.service;
 
+import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
@@ -43,10 +45,59 @@ public class SnakeMover {
 
 	private void moveHead() {
 		Body body = snake.getBodys().get(0);
-		moveHead(snake.getDirection(), body);
-		checkEatEgg(body);
+		Body oldBody = new Body(body.getX(),body.getY());
+		try {
+			moveHead(snake.getDirection(), body);
+			setupHitWall(body,oldBody);
+			checkEatEgg(body);
+		} catch (HitWallException e) {
+		}
 	}
 	
+	private void setupHitWall(Body body, Body oldBody) throws HitWallException {
+		if(isHitWall(body)){
+			if(snake.getBodys().size() <= GameSetting.DEDUCTION_POINT){
+				snake.getBodys().clear();
+				snake.setStatus(Status.DIE);
+			}else{
+				cutBody();
+				body.setX(oldBody.getX());
+				body.setY(oldBody.getY());
+			}
+			throw new HitWallException();
+		}
+	}
+	
+	private void cutBody() {
+		for(int i=0;i<GameSetting.DEDUCTION_POINT;i++){
+			int size = snake.getBodys().size();
+			snake.getBodys().remove(size-1);
+		}
+	}
+
+	private boolean isHitWall(Body body){
+		HashMap<Principal, Snake> player = GameDataStore.getInstance().getPlayer();
+		for(Principal p : player.keySet()){
+			Snake s = player.get(p);
+			if(isHitSomeSnake(s, body)){
+				return true;
+			}
+				
+		}
+		return false;
+	}
+	
+	private boolean isHitSomeSnake(Snake s,Body body){
+		for(int i=0;i<s.getBodys().size();i++){
+			if(!s.getUserName().equals(snake.getUserName()) || i != 0){
+				if(s.getBodys().get(i).equals(body)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	private void checkEatEgg(Body body) {
 		if(snakeMoveHandle.hasEatEgg(body)){
 			int x = body.getX();
@@ -104,6 +155,10 @@ public class SnakeMover {
 		if(b.getY() < 0) {
 			b.setY(GameSetting.MAX_HEIGHT -1);
 		}
+	}
+	
+	class HitWallException extends Exception{
+		
 	}
 	
 }
