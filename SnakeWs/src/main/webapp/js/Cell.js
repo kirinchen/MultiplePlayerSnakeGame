@@ -23,7 +23,9 @@ function Cell(_x,_y){
 			if(egg.x == self.x && egg.y == self.y){
 				if(!self._isSetCssClass ){
 					self._isSetCssClass = true;
-					self.cssClass(_EGG_CSS_CLASS);
+					if(self.cssClass() != _EGG_CSS_CLASS){
+						self.cssClass(_EGG_CSS_CLASS);
+					}
 				}
 			}
 		}
