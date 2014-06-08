@@ -12,9 +12,22 @@ function Cell(_x,_y){
 	
 	self.update = function(data,userName){
 		updateSnakes(data.snakes,userName);
+		updateEgg(data.eggs);
 		updateEmpty();
 		self._isSetCssClass = false;
 	};
+	
+	function updateEgg(eggs){
+		for(var key in eggs){
+			egg = eggs[key];
+			if(egg.x == self.x && egg.y == self.y){
+				if(!self._isSetCssClass ){
+					self._isSetCssClass = true;
+					self.cssClass(_EGG_CSS_CLASS);
+				}
+			}
+		}
+	}
 	
 	function updateEmpty(){
 		if(!self._isSetCssClass){
@@ -30,9 +43,13 @@ function Cell(_x,_y){
 			if(snake.userName == userName){
 				updateSelfSnake(snake);
 			}else{
-				
+				updateRivalSnake(snake);
 			}
 		}
+	}
+	
+	function updateRivalSnake(snake){
+		updateSnakesByClass(snake,_RIVAL_CSS_CLASS);
 	}
 	
 	function updateSelfSnake(snake){
@@ -46,7 +63,9 @@ function Cell(_x,_y){
 			if(body.x == self.x && body.y == self.y){
 				if(!self._isSetCssClass ){
 					self._isSetCssClass = true;
-					self.cssClass(_cssClass);
+					if(self.cssClass() != _cssClass){
+						self.cssClass(_cssClass);
+					}
 				}
 			}
 		}

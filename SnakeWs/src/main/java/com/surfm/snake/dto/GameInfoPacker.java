@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.surfm.snake.model.Egg;
 import com.surfm.snake.model.GameDataStore;
 import com.surfm.snake.model.Snake;
 
@@ -22,6 +23,7 @@ public class GameInfoPacker {
 
 	public void pack() {
 		setupSnakes();
+		setupEggs();
 		ans.setSnakes(snakes);
 	}
 
@@ -33,6 +35,12 @@ public class GameInfoPacker {
 		Set<Principal> keys = gameDataStore.getPlayer().keySet();
 		for (Principal key : keys) {
 			snakes.add(gameDataStore.getPlayer().get(key));
+		}
+	}
+	
+	private void setupEggs(){
+		for(Egg e : gameDataStore.getEggs()){
+			ans.getEggs().add(e);
 		}
 	}
 

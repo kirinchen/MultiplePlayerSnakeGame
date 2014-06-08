@@ -14,46 +14,59 @@ public class GameDataStore {
 
 	private HashMap<Principal, Snake> player = new HashMap<Principal, Snake>();
 	private List<Egg> eggs = new ArrayList<Egg>();
-	private List<Cell> emptys = new ArrayList<Cell>();
 
 	private GameDataStore() {
-		initEmptys();
 	}
 
-	private void initEmptys() {
-		for(int i=0;i<GameSetting.MAX_WIDTH;i++){
-			for(int j=0;j<GameSetting.MAX_HEIGHT;j++){
-				emptys.add(new Cell(i, j));
-			}
-		}
+	public boolean hasPlayer(Principal p) {
+		return player.containsKey(p);
 	}
-	
-	public Cell getRandomEmptyCell(){
+
+	public Cell getRandomEmptyCell() {
 		Random r = new Random();
-		int index = r.nextInt(emptys.size() -1);
+		List<Cell> emptys = getEmptyCells();
+		int index = r.nextInt(emptys.size() - 1);
 		Cell c = emptys.get(index);
 		emptys.remove(index);
 		return c;
 	}
-	
-	public void registerEmpty(Cell cell){
-		int removeIndex = -1;
-		for(int i=0;i<emptys.size();i++){
-			if(emptys.get(i).hashCode() == cell.hashCode()){
-				removeIndex = i;
-				break;
+
+	public List<Cell> getEmptyCells() {
+		List<Cell> ans = new ArrayList<Cell>();
+		for (int i = 0; i < GameSetting.MAX_WIDTH; i++) {
+			for (int j = 0; j < GameSetting.MAX_HEIGHT; j++) {
+				if (isEmpty(i, j))
+					ans.add(new Cell(i, j));
 			}
 		}
-		emptys.remove(removeIndex);
+		return ans;
 	}
 
-	public void unRegister(Cell cell){
-		for(int i=0;i<emptys.size();i++){
-			if(emptys.get(i).hashCode() == cell.hashCode()){
-				throw new RuntimeException("this is has empty cell in unRegister" );
+	private boolean isEmpty(int i, int j) {
+		if (!isEmptyForSnakes(i, j))
+			return false;
+		if (!isEmptyForEggs(i, j))
+			return false;
+		return true;
+	}
+
+	private boolean isEmptyForEggs(int i, int j) {
+		for (Egg e : eggs) {
+			if (e.getX() == i && e.getY() == j)
+				return false;
+		}
+		return true;
+	}
+
+	private boolean isEmptyForSnakes(int i, int j) {
+		for (Principal p : player.keySet()) {
+			Snake s = player.get(p);
+			for (Body b : s.getBodys()) {
+				if (b.getX() == i && b.getY() == j)
+					return false;
 			}
 		}
-		emptys.add(cell);
+		return true;
 	}
 
 	public HashMap<Principal, Snake> getPlayer() {
@@ -62,10 +75,6 @@ public class GameDataStore {
 
 	public List<Egg> getEggs() {
 		return eggs;
-	}
-
-	public List<Cell> getEmptys() {
-		return emptys;
 	}
 
 	public static GameDataStore getInstance() {

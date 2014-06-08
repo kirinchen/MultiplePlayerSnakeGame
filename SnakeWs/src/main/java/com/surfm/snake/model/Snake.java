@@ -12,7 +12,7 @@ public class Snake {
 	private List<Body> bodys = new ArrayList<Body>();
 	private String userName;
 	private Direction direction = Direction.LEFT;
-	private Status status;
+	private Status status = Status.BIRTH;
 
 	public Snake(String userName) {
 		super();

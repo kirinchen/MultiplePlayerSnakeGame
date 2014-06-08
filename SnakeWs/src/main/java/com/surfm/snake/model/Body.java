@@ -9,5 +9,9 @@ public class Body extends Cell {
 	public Body(Cell cell) {
 		super(cell.getX(), cell.getY());
 	}
+	
+	public Cell getCell(){
+		return new Cell(getX(),getY());
+	}
 
 }

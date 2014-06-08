@@ -1,3 +1,10 @@
+var _DOWN_KEY_CODE = 40;
+var _UP_KEY_CODE = 38;
+var _LEFT_KEY_CODE = 37;
+var _RIGHT_KEY_CODE = 39;
+
+
+
 function AppModel(stompClient) {
 	var self = this;
 	self.rows = ko.observableArray();
@@ -10,6 +17,31 @@ function AppModel(stompClient) {
 		});
 
 	};
+	
+	self.keyDown = function(event){
+		sendDirection(event.keyCode);
+	};
+	
+	function sendDirection(keyCode){
+		var e = getKeyEnum(keyCode);
+		if(e != null){
+			stompClient.send("/app/snake/direction/" + e, {},{});
+		}
+	}
+	
+	function getKeyEnum(keyCode){
+		switch (keyCode) {
+		case _DOWN_KEY_CODE:
+			return "DOWN";
+		case _UP_KEY_CODE:
+			return "UP";
+		case _LEFT_KEY_CODE :
+			return "LEFT";
+		case _RIGHT_KEY_CODE:
+			return "RIGHT";
+		}
+		return null;
+	}
 
 	self._successHandler = function(frame) {
 		console.log('Connected ' + frame);

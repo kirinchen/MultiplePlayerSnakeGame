@@ -2,8 +2,8 @@
     clear: both;
 }
 .main .line div {
-    width: 7px;
-    height: 7px;
+    width: 17px;
+    height: 17px;
     float: left;
     border: 1px solid #ddd;
     border-radius: 2px;
@@ -13,14 +13,13 @@
 
 .main .line div.rival {
     background-color: red;
-    transition: background-color .5s;
+    transition: background-color .1s;
 }
 
 .main .line div.self {
     background-color: blue;
-    transition: background-color .5s;
+    transition: background-color .1s;
 }
 .main .line div.egg {
     background-color: green;
-    transition: background-color 2s;
 }

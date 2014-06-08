@@ -14,7 +14,7 @@
 
 	<div id="main" class="main" data-bind="foreach: rows()">
 		<div class="line" data-bind="foreach: cells()">
-			<div   data-bind="attr: { class: cssClass }" ></div>
+			<div data-bind="attr: { class: cssClass }"></div>
 		</div>
 	</div>
 
@@ -28,6 +28,9 @@
 			var stompClient = Stomp.over(socket);
 
 			var appModel = new AppModel(stompClient);
+			$("body").keydown(function(event) {
+				appModel.keyDown(event);
+			});
 			ko.applyBindings(appModel);
 			appModel.connect();
 		});

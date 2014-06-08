@@ -41,8 +41,6 @@ public class Cell {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Cell other = (Cell) obj;
 		if (x != other.x)
 			return false;
