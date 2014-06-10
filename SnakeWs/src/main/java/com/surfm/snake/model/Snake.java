@@ -6,13 +6,16 @@ import java.util.List;
 public class Snake {
 
 	public enum Status {
-		BIRTH, LIVE, DIE;
+		BIRTH, LIVE, HURT , DIE;
 	}
 
 	private List<Body> bodys = new ArrayList<Body>();
 	private String userName;
-	private Direction direction = Direction.LEFT;
+	private Direction direction ;
 	private Status status = Status.BIRTH;
+	private int hurtWaitCount = 0;
+	private int hp;
+	
 
 	public Snake(String userName) {
 		super();
@@ -45,6 +48,22 @@ public class Snake {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+	
+	public int getHurtWaitCount() {
+		return hurtWaitCount;
+	}
+
+	public void setHurtWaitCount(int hurtWaitCount) {
+		this.hurtWaitCount = hurtWaitCount;
+	}
+	
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
 	}
 
 }

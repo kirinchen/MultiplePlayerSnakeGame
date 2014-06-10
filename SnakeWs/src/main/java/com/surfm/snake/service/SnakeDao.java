@@ -15,6 +15,7 @@ import com.surfm.snake.model.Cell;
 import com.surfm.snake.model.Direction;
 import com.surfm.snake.model.GameDataStore;
 import com.surfm.snake.model.Snake;
+import com.surfm.snake.model.Snake.Status;
 
 @Repository
 public class SnakeDao {
@@ -30,7 +31,7 @@ public class SnakeDao {
 			Body b = new Body(cell);
 			Snake snake = new Snake(p.getName());
 			snake.getBodys().add(b);
-			gameDataStore.getPlayer().put(p, snake);
+			gameDataStore.getPlayer().put(p.getName(), snake);
 		}
 	}
 
@@ -49,11 +50,15 @@ public class SnakeDao {
 	}
 
 	private void changeDirection(Principal p, Direction direction) {
-		Snake s = gameDataStore.getPlayer().get(p);
-		if (s.getDirection().getType() != direction.getType()) {
+		Snake s = gameDataStore.getPlayer().get(p.getName());
+		if(s.getStatus() == Status.BIRTH){
+			s.setStatus(Status.LIVE);
+			s.setDirection(direction);
+		}else if (  s.getDirection().getType() != direction.getType()) {
 			s.setDirection(direction);
 		}
 	}
+
 
 	public void moveSnakes(SnakeMoveHandle smh) {
 		for (Snake s : getSnakes()) {

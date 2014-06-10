@@ -12,14 +12,14 @@ public class GameDataStore {
 
 	private static final GameDataStore instance = new GameDataStore();
 
-	private HashMap<Principal, Snake> player = new HashMap<Principal, Snake>();
+	private HashMap<String, Snake> player = new HashMap<String, Snake>();
 	private List<Egg> eggs = new ArrayList<Egg>();
 
 	private GameDataStore() {
 	}
 
 	public boolean hasPlayer(Principal p) {
-		return player.containsKey(p);
+		return player.containsKey(p.getName());
 	}
 
 	public Cell getRandomEmptyCell() {
@@ -59,7 +59,7 @@ public class GameDataStore {
 	}
 
 	private boolean isEmptyForSnakes(int i, int j) {
-		for (Principal p : player.keySet()) {
+		for (String p : player.keySet()) {
 			Snake s = player.get(p);
 			for (Body b : s.getBodys()) {
 				if (b.getX() == i && b.getY() == j)
@@ -69,7 +69,7 @@ public class GameDataStore {
 		return true;
 	}
 
-	public HashMap<Principal, Snake> getPlayer() {
+	public HashMap<String, Snake> getPlayer() {
 		return player;
 	}
 

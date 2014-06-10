@@ -9,6 +9,7 @@ function AppModel(stompClient) {
 	var self = this;
 	self.rows = ko.observableArray();
 	self.userName = ko.observable();
+	self.players = ko.observableArray();
 
 	self.connect = function() {
 
@@ -77,6 +78,16 @@ function AppModel(stompClient) {
 				cell.update(data,self.userName());
 			});
 		});
+		updatePlayers(data.snakes);
+	}
+	
+	function updatePlayers(snakes){
+		self.players.removeAll();
+		for(var key in snakes){
+			snake = snakes[key];
+			p = new Player(snake);
+			self.players.push(p);
+		}
 	}
 
 	function init(data) {

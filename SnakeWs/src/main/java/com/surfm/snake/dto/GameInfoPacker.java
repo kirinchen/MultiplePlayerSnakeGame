@@ -1,6 +1,5 @@
 package com.surfm.snake.dto;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -32,8 +31,8 @@ public class GameInfoPacker {
 	}
 
 	private void setupSnakes() {
-		Set<Principal> keys = gameDataStore.getPlayer().keySet();
-		for (Principal key : keys) {
+		Set<String> keys = gameDataStore.getPlayer().keySet();
+		for (String key : keys) {
 			snakes.add(gameDataStore.getPlayer().get(key));
 		}
 	}

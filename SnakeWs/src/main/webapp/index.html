@@ -13,28 +13,47 @@
 </head>
 <body>
 
-	<div id="main" class="main" data-bind="foreach: rows()">
-		<div class="line" data-bind="foreach: cells()">
-			<div data-bind="attr: { class: cssClass }"></div>
-		</div>
-	</div>
+	<table>
+		<tr>
+			<td>
+				<div id="main" class="main" data-bind="foreach: rows()">
+					<div class="line" data-bind="foreach: cells()">
+						<div data-bind="attr: { class: cssClass }"></div>
+					</div>
+				</div>
+
+			</td>
+			<td>
+				<ul data-bind="foreach: players()">
+					<li><span data-bind="text: userName" ></span> <span data-bind="text: hp" ></span> </li>
+				</ul>
+			</td>
+		</tr>
+
+	</table>
+
+
+
+
+
 	<br />
-	<center>
-		<table>
-			<tr>
-				<td ROWSPAN=2><div class="btn btn-primary"
-						data-bind="click: leftClick">LEFT</div></td>
-				<td><div class="btn btn-primary" data-bind="click: upClick"> UP    !!!!</div></td>
-				<td ROWSPAN=2><div class="btn btn-primary"
-						data-bind="click: rightClick">RIGHT</div></td>
-			</tr>
-			<tr>
-				<td><div class="btn btn-primary " data-bind="click: downClick">DOWN</div></td>
-			</tr>
 
-		</table>
-	</center>
+	<table>
+		<tr>
+			<td ROWSPAN=2><div class="btn btn-primary"
+					data-bind="click: leftClick">LEFT</div></td>
+			<td><div class="btn btn-primary" data-bind="click: upClick">
+					UP !!!!</div></td>
+			<td ROWSPAN=2><div class="btn btn-primary"
+					data-bind="click: rightClick">RIGHT</div></td>
+		</tr>
+		<tr>
+			<td><div class="btn btn-primary " data-bind="click: downClick">DOWN</div></td>
+		</tr>
 
+	</table>
+
+	<script src="./js/Player.js"></script>
 	<script src="./js/AppModel.js"></script>
 	<script src="./js/Row.js"></script>
 	<script src="./js/Cell.js"></script>
