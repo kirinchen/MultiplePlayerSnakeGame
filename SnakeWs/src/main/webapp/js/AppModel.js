@@ -105,3 +105,5 @@ function AppModel(stompClient) {
 		}
 	}
 }
+
+

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -70,6 +71,16 @@ public class SnakeDao {
 
 	private Collection<Snake> getSnakes() {
 		return gameDataStore.getPlayer().values();
+	}
+
+	public void removeDieSnakes() {
+		Set<String> keys = gameDataStore.getPlayer().keySet();
+		for(String key : keys){
+			Snake s = gameDataStore.getPlayer().get(key);
+			if(s.getHp() <= 0){
+				gameDataStore.getPlayer().remove(key);
+			}
+		}
 	}
 
 }

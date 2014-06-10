@@ -5,8 +5,12 @@
 <script src="./assets/lib/jquery/jquery.js"></script>
 <script src="./assets/lib/bootstrap/js/bootstrap.js"></script>
 <script src="./assets/lib/knockout/knockout.js"></script>
+<script src="./assets/lib/toast/toast.js"></script>
 <script src="./assets/lib/sockjs/sockjs.js"></script>
 <script src="./assets/lib/stomp/lib/stomp.min.js"></script>
+
+<link type="text/css" rel="stylesheet"
+	href="./assets/lib/toast/toast.css" />
 <link href="./assets/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="./css/index.css" />
 
@@ -25,18 +29,13 @@
 			</td>
 			<td>
 				<ul data-bind="foreach: players()">
-					<li><span data-bind="text: userName" ></span> <span data-bind="text: hp" ></span> </li>
+					<li><span data-bind="text: userName"></span> <span
+						data-bind="text: hp"></span></li>
 				</ul>
 			</td>
 		</tr>
 
 	</table>
-
-
-
-
-
-	<br />
 
 	<table>
 		<tr>
@@ -70,6 +69,12 @@
 			ko.applyBindings(appModel);
 			appModel.connect();
 		});
+
+		function showWarning(txt) {
+			Toast.defaults.width = '550px';
+			Toast.defaults.displayDuration = 2000;
+			Toast.warning('¶K¤ß´£¿ô', txt);
+		}
 	</script>
 
 </body>

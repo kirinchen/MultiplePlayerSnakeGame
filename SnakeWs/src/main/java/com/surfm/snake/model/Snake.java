@@ -14,7 +14,7 @@ public class Snake {
 	private Direction direction ;
 	private Status status = Status.BIRTH;
 	private int hurtWaitCount = 0;
-	private int hp;
+	private int hp = 1;
 	
 
 	public Snake(String userName) {

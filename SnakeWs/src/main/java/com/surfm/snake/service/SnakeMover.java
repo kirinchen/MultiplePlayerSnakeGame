@@ -31,7 +31,7 @@ public class SnakeMover {
 			goToMove();
 		} else if (snake.getStatus() == Status.HURT) {
 			healHurt();
-		}
+		} 
 	}
 
 	private void goToMove() {

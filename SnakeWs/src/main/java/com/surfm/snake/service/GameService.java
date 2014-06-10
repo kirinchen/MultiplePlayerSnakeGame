@@ -15,6 +15,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.surfm.snake.dto.GameInfoPacker;
 import com.surfm.snake.model.Direction;
+import com.surfm.snake.model.GameDataStore;
 
 @Service
 @Scope("singleton")
@@ -53,6 +54,7 @@ public class GameService {
 	
 	
 	private void runGameScript(){
+		snakeDao.removeDieSnakes();
 		snakeDao.createSnakes(processQueue.getCreatePlayer());
 		snakeDao.changeDirections(processQueue.getDirections());
 		snakeDao.moveSnakes(eggDao);
@@ -60,6 +62,8 @@ public class GameService {
 		sendDataToUser();
 	}
 	
+
+
 	private void sendDataToUser(){
 		GameInfoPacker gp = context.getBean(GameInfoPacker.class);
 		gp.pack();
