@@ -43,7 +43,7 @@ public class GameService {
 		DirectionQueueData dqd = new DirectionQueueData();
 		dqd.setDirection(d);
 		dqd.setPrincipal(p);
-		processQueue.getDirections().add(dqd);
+		processQueue.addDirectionQueueData(dqd);
 	}
 	
 	@Scheduled(fixedDelay=100)

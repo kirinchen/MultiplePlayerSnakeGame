@@ -77,7 +77,7 @@ public class SnakeDao {
 		Set<String> keys = gameDataStore.getPlayer().keySet();
 		for(String key : keys){
 			Snake s = gameDataStore.getPlayer().get(key);
-			if(s.getHp() <= 0){
+			if(s.getHp() <= 0 && s.getStatus() == Status.DIE){
 				gameDataStore.getPlayer().remove(key);
 			}
 		}
