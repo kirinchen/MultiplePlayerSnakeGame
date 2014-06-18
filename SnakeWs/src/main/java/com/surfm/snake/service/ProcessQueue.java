@@ -22,6 +22,21 @@ public class ProcessQueue {
 		return directions;
 	}
 	
+	public void addDirectionQueueData(DirectionQueueData dqd){
+		if(hasSamePrincipalDirectionQueue(dqd)){
+			directions.add(dqd);
+		}
+	}
+	
+	private boolean hasSamePrincipalDirectionQueue(DirectionQueueData in) {
+		for(DirectionQueueData dqd : directions){
+			if(dqd.getPrincipal().getName().equals(in.getPrincipal().getName())){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static ProcessQueue getInstance(){
 		return instance;
 	}

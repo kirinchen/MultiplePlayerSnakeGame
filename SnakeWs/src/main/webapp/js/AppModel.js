@@ -68,9 +68,24 @@ function AppModel(stompClient) {
 		stompClient.subscribe("/message/game", function(message) {
 			updateGame(JSON.parse(message.body));
 		});
-
+		stompClient.subscribe("/message/eggs/create", function(message) {
+			createEggs(JSON.parse(message.body));
+		});
 	};
 
+	function createEggs(eggs){
+		for(var key in eggs){
+			egg = eggs[key];
+			createEgg(egg);
+		}
+	}
+	
+	function createEgg(egg){
+		row = self.rows()[egg.y];
+		c = row.cells()[egg.x];
+		c.isEgg = true;
+	}
+	
 	function updateGame(data) {
 
 		ko.utils.arrayForEach(self.rows(), function(row) {
@@ -95,6 +110,7 @@ function AppModel(stompClient) {
 		height = data.height;
 		initGameSize(width, height);
 		self.userName(data.myName);
+		createEggs(data.eggs);
 	}
 
 	function initGameSize(width, height) {

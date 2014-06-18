@@ -16,18 +16,18 @@ import com.surfm.snake.model.Snake;
 public class GameInfoPacker {
 
 	private GameDataStore gameDataStore = GameDataStore.getInstance();
-	private GameInfo ans = new GameInfo();
+//	private GameInfo ans = new GameInfo();
 
 	private List<Snake> snakes = new ArrayList<Snake>();
 
 	public void pack() {
 		setupSnakes();
-		setupEggs();
-		ans.setSnakes(snakes);
+//		setupEggs();
+//		ans.setSnakes(snakes);
 	}
 
-	public GameInfo getAns() {
-		return ans;
+	public List<Snake> getAns() {
+		return snakes;
 	}
 
 	private void setupSnakes() {
@@ -37,10 +37,10 @@ public class GameInfoPacker {
 		}
 	}
 	
-	private void setupEggs(){
-		for(Egg e : gameDataStore.getEggs()){
-			ans.getEggs().add(e);
-		}
-	}
+//	private void setupEggs(){
+//		for(Egg e : gameDataStore.getEggs()){
+//			ans.getEggs().add(e);
+//		}
+//	}
 
 }

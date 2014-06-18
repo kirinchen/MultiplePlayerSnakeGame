@@ -1,10 +1,15 @@
 package com.surfm.snake.dto;
 
+import java.util.List;
+
+import com.surfm.snake.model.Egg;
+
 public class JionInfo {
 
 	private int width;
 	private int height;
 	private String myName;
+	private List<Egg> eggs;
 
 	public int getWidth() {
 		return width;
@@ -30,4 +35,12 @@ public class JionInfo {
 		this.myName = myName;
 	}
 
+	public List<Egg> getEggs() {
+		return eggs;
+	}
+
+	public void setEggs(List<Egg> eggs) {
+		this.eggs = eggs;
+	}
+	
 }

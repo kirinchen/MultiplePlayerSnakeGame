@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import com.surfm.snake.config.GameSetting;
 import com.surfm.snake.dto.JionInfo;
 import com.surfm.snake.model.Direction;
+import com.surfm.snake.model.GameDataStore;
 import com.surfm.snake.service.GameService;
 
 @Controller
@@ -27,6 +28,7 @@ public class SnakeController {
 		ans.setHeight(GameSetting.MAX_HEIGHT);
 		ans.setWidth(GameSetting.MAX_WIDTH);
 		ans.setMyName(principal.getName());
+		ans.setEggs(GameDataStore.getInstance().getEggs());
 		gameService.addPlayer(principal);
 		return ans;
 	}
