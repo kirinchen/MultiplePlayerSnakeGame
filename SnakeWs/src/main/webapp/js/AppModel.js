@@ -71,8 +71,17 @@ function AppModel(stompClient) {
 		stompClient.subscribe("/message/eggs/create", function(message) {
 			createEggs(JSON.parse(message.body));
 		});
+		stompClient.subscribe("/message/eggs/remove", function(message) {
+			removeEgg(JSON.parse(message.body));
+		});
 	};
 
+	function removeEgg(egg){
+		row = self.rows()[egg.y];
+		c = row.cells()[egg.x];
+		c.isEgg = false;
+	}
+	
 	function createEggs(eggs){
 		for(var key in eggs){
 			egg = eggs[key];
@@ -93,7 +102,7 @@ function AppModel(stompClient) {
 				cell.update(data,self.userName());
 			});
 		});
-		updatePlayers(data.snakes);
+		updatePlayers(data);
 	}
 	
 	function updatePlayers(snakes){

@@ -47,8 +47,8 @@ public class EggDao implements SnakeMoveHandle {
 		return e;
 	}
 
-	private void notifyCreateEggs(List<Egg> eggs) {
-		this.messagingTemplate.convertAndSend("/message/eggs/create", eggs);
+	private void notifyCreateEggs(List<Egg> _eggs) {
+		this.messagingTemplate.convertAndSend("/message/eggs/create", _eggs);
 	}
 
 	@Override
@@ -70,7 +70,14 @@ public class EggDao implements SnakeMoveHandle {
 				break;
 			}
 		}
-		eggs.remove(removeE);
+		if(eggs.remove(removeE)){
+		    notifyRemoveEgg(removeE);
+		}
+		
 	}
+
+    private void notifyRemoveEgg(Egg removeE) {
+        this.messagingTemplate.convertAndSend("/message/eggs/remove", removeE);
+    }
 
 }

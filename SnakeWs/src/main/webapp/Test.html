@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>Insert title here</title>
+<script src="./assets/lib/jquery/jquery.js"></script>
+<script src="./assets/lib/bootstrap/js/bootstrap.js"></script>
+<script src="./assets/lib/knockout/knockout.js"></script>
+<script src="./assets/lib/toast/toast.js"></script>
+<script src="./assets/lib/sockjs/sockjs.js"></script>
+<script src="./assets/lib/stomp/lib/stomp.min.js"></script>
+</head>
+<body>
+
+		<table>
+			<tr>
+				<td>start time</td>
+				<td>end time</td>
+				<td>spend time</td>
+			</tr>
+			<tr>
+				<td data-bind="text: startTime" ></td>
+				<td data-bind="text: endtTime" ></td>
+				<td data-bind="text: spendTime"></td>
+			</tr>
+
+		</table>
+	<div data-bind="text: testData"></div>
+
+
+	<script src="./js/Test.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			var socket = new SockJS('/snake/sankeWs');
+			var stompClient = Stomp.over(socket);
+			var appModel = new Test(stompClient);
+			ko.applyBindings(appModel);
+			appModel.connect();
+		});
+
+		function showWarning(txt) {
+			Toast.defaults.width = '550px';
+			Toast.defaults.displayDuration = 2000;
+			Toast.warning('貼心提醒', txt);
+		}
+	</script>
+</body>
+</html>
