@@ -46,7 +46,7 @@ public class GameService {
 		processQueue.getDirections().add(dqd);
 	}
 	
-	@Scheduled(fixedDelay=100)
+	@Scheduled(fixedDelay=120)
 	@Async
 	public synchronized void runGame(){
 		runGameScript();

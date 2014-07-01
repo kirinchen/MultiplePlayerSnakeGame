@@ -2,8 +2,8 @@
     clear: both;
 }
 .main .line div {
-    width: 17px;
-    height: 17px;
+    width: 25px;
+    height: 25px;
     float: left;
     border: 1px solid #ddd;
     border-radius: 2px;
